@@ -2,7 +2,7 @@ html {
   margin: 12px;
   font-family: 'Overpass', sans-serif;
   font-size: 16px;
-  background-color: #293757;
+  background-color: #1b51a3;
   color: #f5f7f7;
 }
 h1 {
@@ -39,24 +39,17 @@ p {
 .container {
   display: grid;
   grid-template-areas:
-    "blank divide multiply subtract"
-    "seven eight  nine     add"
-    "four  five   six      add"
-    "one   two    three    equals"
-    "zero  zero   period   equals";
+    "answer answer answer   answer"
+    "blank  divide multiply subtract"
+    "seven  eight  nine     add"
+    "four   five   six      add"
+    "one    two    three    equals"
+    "zero   zero   period   equals";
   grid-template-columns: 60px 60px 60px 60px;
-  grid-template-rows: 60px 60px 60px 60px 60px;
+  grid-template-rows: 70px 60px 60px 60px 60px 60px;
   column-gap: 4px;
   row-gap: 4px;
   padding: .5rem 0;
-}
-.item {
-  font-family: 'Overpass Mono', monospace;
-  font-weight: 400;
-  font-size: .9em;
-  background-color: rgba(255,255,255,0.07);
-  border-radius: 4px;
-  padding: 8px 4px;
 }
 .zero {
   grid-area: zero;
@@ -100,6 +93,9 @@ p {
 .divide {
   grid-area: divide;
 }
+.divide .center {
+  padding-top: .7em;
+}
 .period {
   grid-area: period;
 }
@@ -108,4 +104,68 @@ p {
 }
 .blank {
   grid-area: blank;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Baloo', 'Overpass', sans-serif;
+  font-weight: 600;
+  font-size: 1.1em;
+  /* background-color: rgba(52, 112, 202,0); */
+  background: linear-gradient(305deg, rgb(28, 69, 131), rgb(28, 69, 131) 30%, rgb(34, 91, 177) 70%, rgb(34, 91, 177));
+  /* text-shadow: .1em .1em .2em rgba(0,0,0,0.3); */
+  border-radius: 8px;
+  padding: 8px 4px;
+  box-shadow: 0 .2em 1em rgba(0,0,0,0.1);
+}
+.center {
+  /* padding: -0.1em .2em 1em .2em; */
+  width: 90%;
+  min-height: 100%;
+  border-radius: 8px;
+  padding-top: .85em;
+  margin: .7em 0;
+  position: relative;
+  bottom: .3em;
+  /* left: .2em; */
+  /* background-color: rgba(255,255,255,0.1); */
+  background: linear-gradient(90deg, rgb(45, 107, 199), rgb(33, 95, 189));
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+.zero {
+  /* background: linear-gradient(330deg, rgb(28, 69, 131), rgb(28, 69, 131) 30%, rgb(34, 91, 177) 70%, rgb(34, 91, 177)); */
+}
+.zero .center {
+  width: 96%;
+}
+.equals, .add {
+  background: linear-gradient(290deg, rgb(28, 69, 131), rgb(28, 69, 131) 30%, rgb(34, 91, 177) 70%, rgb(34, 91, 177));
+}
+.equals .center, .add .center {
+  padding-top: 2.7em;
+}
+.answer {
+  text-align: right;
+  font-family: 'Overpass Mono', monospace;
+  font-size: 1.5em;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  text-shadow: none;
+  background-color: rgb(28, 59, 107);
+  grid-area: answer;
+  margin-bottom: 0.5em;
+  border-radius: 4px;
+  padding: 1.25rem 0.9rem 0 0.9rem;
+}
+.calc-border {
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #255fb6;
+  box-shadow: 0em .4em 3em rgba(151, 151, 151, 0.1);
+  /* box-shadow: 0em .3em 3em rgba(0,0,0,0.04); */
 }
