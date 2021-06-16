@@ -1,0 +1,111 @@
+html {
+  margin: 12px;
+  font-family: 'Overpass', sans-serif;
+  font-size: 16px;
+  background-color: #293757;
+  color: #f5f7f7;
+}
+h1 {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin-bottom: .1em;
+}
+h2 {
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: .2em;
+}
+h3 {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  margin-bottom: .2em;
+}
+h4 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: .3em;
+}
+p {
+  padding-block-end: .2em;
+}
+.appBorder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+.container {
+  display: grid;
+  grid-template-areas:
+    "blank divide multiply subtract"
+    "seven eight  nine     add"
+    "four  five   six      add"
+    "one   two    three    equals"
+    "zero  zero   period   equals";
+  grid-template-columns: 60px 60px 60px 60px;
+  grid-template-rows: 60px 60px 60px 60px 60px;
+  column-gap: 4px;
+  row-gap: 4px;
+  padding: .5rem 0;
+}
+.item {
+  font-family: 'Overpass Mono', monospace;
+  font-weight: 400;
+  font-size: .9em;
+  background-color: rgba(255,255,255,0.07);
+  border-radius: 4px;
+  padding: 8px 4px;
+}
+.zero {
+  grid-area: zero;
+}
+.one {
+  grid-area: one;
+}
+.two {
+  grid-area: two;
+}
+.three {
+  grid-area: three;
+}
+.four {
+  grid-area: four;
+}
+.five {
+  grid-area: five;
+}
+.six {
+  grid-area: six;
+}
+.seven {
+  grid-area: seven;
+}
+.eight {
+  grid-area: eight;
+}
+.nine {
+  grid-area: nine;
+}
+.add {
+  grid-area: add;
+}
+.subtract {
+  grid-area: subtract;
+}
+.multiply {
+  grid-area: multiply;
+}
+.divide {
+  grid-area: divide;
+}
+.period {
+  grid-area: period;
+}
+.equals {
+  grid-area: equals;
+}
+.blank {
+  grid-area: blank;
+}
