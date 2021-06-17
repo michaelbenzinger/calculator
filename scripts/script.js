@@ -25,7 +25,10 @@ const clear = document.querySelector('.clear');
 const answer = document.querySelector('.answer');
 keys.forEach(key => key.addEventListener('click', function(e){
   let dataKey = this.attributes[0].value;
-  // console.log(dataKey);
+  handleInput(dataKey);
+}));
+
+function handleInput (dataKey) {
   if (dataKey === "clear") { clearAll(); }
   else if (dataKey == "equals") {
     evaluate();
@@ -73,20 +76,57 @@ keys.forEach(key => key.addEventListener('click', function(e){
   parseDisplay();
   display();
   console.log(`${exp1} ${oper} ${exp2}`);
-}));
+}
+
+function keyToDataKey(key) {
+  if (key == "+") {
+    return "add";
+  } else if (key == "-") {
+    return "subtract";
+  } else if (key == "*") {
+    return "multiply";
+  } else if (key == "/") {
+    return "divide";
+  } else if (key == ".") {
+    return "period";
+  } else if (key == "=") {
+    return "equals";
+  } else if (key == "Enter") {
+    return "equals";
+  }
+  return key;
+}
 
 keys.forEach(key => key.addEventListener('mousedown', function(e) {
   // console.log(this);
   this.classList.add('pushing');
-}))
+}));
 keys.forEach(key => key.addEventListener('mouseup', function(e) {
   // console.log(this);
   this.classList.remove('pushing');
-}))
+}));
 keys.forEach(key => key.addEventListener('mouseleave', function(e) {
   // console.log(this);
   this.classList.remove('pushing');
-}))
+}));
+
+window.addEventListener('keydown', pressKey);
+window.addEventListener('keyup', releaseKey);
+
+function pressKey(e) {
+  let thisDataKey = keyToDataKey(e.key);
+  console.log(thisDataKey);
+  let thisKey = document.querySelector(`div[data-key="${thisDataKey}"]`);
+  thisKey.classList.add('pushing');
+  handleInput(thisDataKey);
+}
+
+function releaseKey(e) {
+  let thisDataKey = keyToDataKey(e.key);
+  console.log(e.key);
+  let thisKey = document.querySelector(`div[data-key="${thisDataKey}"]`);
+  thisKey.classList.remove('pushing');
+}
 
 function addToString(num) {
   if (displayString == "0" && !isOperator(num)) {
