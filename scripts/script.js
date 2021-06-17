@@ -37,7 +37,7 @@ function handleInput (dataKey) {
     if (isOperator(dataKey)) {
       if (!oper == "") { // there's already an operator
         evaluate(dataKey);
-      } else if (dataKey == "subtract" && !hasInputted) {
+      } else if (dataKey == "subtract" && displayString == "0") {
         displayString = "";
         addToString(dataKey);
       } else {
@@ -103,7 +103,7 @@ function keyToDataKey(key) {
 }
 
 keys.forEach(key => key.addEventListener('mousedown', function(e) {
-  console.log(this);
+  // console.log(this);
   this.classList.add('pushing');
 }));
 keys.forEach(key => key.addEventListener('mouseup', function(e) {
@@ -120,7 +120,7 @@ window.addEventListener('keyup', releaseKey);
 
 function pressKey(e) {
   let thisDataKey = keyToDataKey(e.key);
-  console.log(thisDataKey);
+  // console.log(thisDataKey);
   let thisKey = document.querySelector(`div[data-key="${thisDataKey}"]`);
   if (thisKey != null) {
     thisKey.classList.add('pushing');
@@ -144,7 +144,8 @@ function addToString(num) {
   if (isOperator(num)) {
     num = getOperator(num)
   }
-  if (num == ".") {
+  // console.log("HERE: " + getOperatorText(displayString[displayString.length-1]));
+  if (num == "." && isOperator(getOperatorText(displayString[displayString.length-1]))) {
     displayString += "0";
   }
   displayString += num;
@@ -158,6 +159,18 @@ function isNumber(value) {
 function isOperator(value) {
   let operators = ["add", "subtract", "multiply", "divide"];
   return (operators.includes(value) ? true : false);
+}
+
+function getOperatorText(op) {
+  if (op == "+") {
+    return "add";
+  } else if (op == "-") {
+    return "subtract";
+  } else if (op == "*") {
+    return "multiply";
+  } else if (op == "/") {
+    return "divide";
+  }
 }
 
 function getOperator(opText) {
