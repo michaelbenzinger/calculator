@@ -1,7 +1,7 @@
 html {
   margin: 12px;
   font-family: 'Overpass', sans-serif;
-  font-size: 16px;
+  font-size: 20px;
   background-color: #255fb6;
   color: #f5f7f7;
 }
@@ -45,8 +45,8 @@ p {
     "four   five   six      add"
     "one    two    three    equals"
     "zero   zero   period   equals";
-  grid-template-columns: 60px 60px 60px 60px;
-  grid-template-rows: 70px 60px 60px 60px 60px 60px;
+  grid-template-columns: repeat(4, 3.75rem);
+  grid-template-rows: 4.375rem repeat(5, 3.75rem);
   column-gap: 4px;
   row-gap: 4px;
   padding: .5rem 0;
@@ -214,3 +214,13 @@ p {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
+/* @media screen and (max-width: 1300px) {
+  html {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  html {
+    font-size: 20px;
+  }
+} */
