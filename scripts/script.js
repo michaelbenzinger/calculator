@@ -27,20 +27,23 @@ keys.forEach(key => key.addEventListener('click', function(e){
   let dataKey = this.attributes[0].value;
   // console.log(dataKey);
   if (dataKey === "clear") { clearAll(); }
-  else if (isOperator(dataKey)) {
-    hasInputted = true;
-    if (!oper == "") {
-      evaluate(dataKey);
-    } else {
-      console.log("Adding " + dataKey);
-      addToString(dataKey);
-    }
-  }
   else if (dataKey == "equals") {
     evaluate();
   }
   else if (displayString.length < 14) {
-    if (isNumber(dataKey)) {
+    if (isOperator(dataKey)) {
+      if (!hasInputted) {
+        clearAll();
+      }
+      hasInputted = true;
+      if (!oper == "") {
+        evaluate(dataKey);
+      } else {
+        console.log("Adding " + dataKey);
+        addToString(dataKey);
+      }
+    }
+    else if (isNumber(dataKey)) {
       if (!hasInputted) {
         clearAll();
       }
@@ -71,6 +74,19 @@ keys.forEach(key => key.addEventListener('click', function(e){
   display();
   console.log(`${exp1} ${oper} ${exp2}`);
 }));
+
+keys.forEach(key => key.addEventListener('mousedown', function(e) {
+  // console.log(this);
+  this.classList.add('pushing');
+}))
+keys.forEach(key => key.addEventListener('mouseup', function(e) {
+  // console.log(this);
+  this.classList.remove('pushing');
+}))
+keys.forEach(key => key.addEventListener('mouseleave', function(e) {
+  // console.log(this);
+  this.classList.remove('pushing');
+}))
 
 function addToString(num) {
   if (displayString == "0" && !isOperator(num)) {
@@ -174,6 +190,9 @@ function evaluate(dataKey) {
       displayString += oper;
     }
     displayString = roundOff(parseFloat(displayString),5).toString()
+    if (isNaN(displayString)) {
+      displayString = "NICE TRY";
+    }
     display();
   }
 }

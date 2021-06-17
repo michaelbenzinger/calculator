@@ -121,6 +121,10 @@ p {
   padding: 8px 4px;
   box-shadow: 0 0.2em 3em rgba(0,0,0,0.08),
               0 0.1em 0.4em rgba(0,0,0,0.08);
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 }
 .center {
   /* padding: -0.1em .2em 1em .2em; */
@@ -139,6 +143,15 @@ p {
   box-sizing: border-box;         /* Opera/IE 8+ */
   box-shadow: 0.4em 0.4em 0.8em rgba(0,0,0,0.08) inset, 
   -0.2em -0.2em 1em rgba(255,255,255,0.04) inset;
+}
+.pushing {
+  background: linear-gradient(305deg, rgb(26 64 123), rgb(28 70 132) 30%, rgb(40 90 165) 70%, rgb(36 93 179));
+  box-shadow: 0 0.2em 3em rgba(0,0,0,0.03),
+  0 0.1em 0.4em rgba(0,0,0,0.03);
+}
+.pushing .center {
+  color: #CCC;
+  background: linear-gradient(90deg, rgb(45 105 193), rgb(26 88 181));
 }
 .zero .center {
   width: 96%;
