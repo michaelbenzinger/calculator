@@ -35,9 +35,9 @@ function handleInput (dataKey) {
   }
   else if (displayString.length < 14) {
     if (isOperator(dataKey)) {
-      if (!hasInputted) {
-        clearAll();
-      }
+      // if (!hasInputted) {
+      //   clearAll();
+      // }
       hasInputted = true;
       if (!oper == "") {
         evaluate(dataKey);
