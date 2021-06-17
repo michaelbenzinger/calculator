@@ -35,16 +35,16 @@ function handleInput (dataKey) {
   }
   else if (displayString.length < 14) {
     if (isOperator(dataKey)) {
-      // if (!hasInputted) {
-      //   clearAll();
-      // }
-      hasInputted = true;
-      if (!oper == "") {
+      if (!oper == "") { // there's already an operator
         evaluate(dataKey);
+      } else if (dataKey == "subtract" && !hasInputted) {
+        displayString = "";
+        addToString(dataKey);
       } else {
-        console.log("Adding " + dataKey);
+        // console.log("Adding " + dataKey);
         addToString(dataKey);
       }
+      hasInputted = true;
     }
     else if (isNumber(dataKey)) {
       if (!hasInputted) {
@@ -52,10 +52,7 @@ function handleInput (dataKey) {
       }
       addToString(dataKey);
     }
-    else if (dataKey == "period") { // needs work
-      // if (displayString[displayString.length-1] !== ".") {
-      //   displayString += ".";
-      // }
+    else if (dataKey == "period") {
       parseDisplay();
       if (hasInputted) {
         if (exp2 == "") {
@@ -75,7 +72,7 @@ function handleInput (dataKey) {
   }
   parseDisplay();
   display();
-  console.log(`${exp1} ${oper} ${exp2}`);
+  // console.log(`${exp1} ${oper} ${exp2}`);
 }
 
 function keyToDataKey(key) {
@@ -93,12 +90,20 @@ function keyToDataKey(key) {
     return "equals";
   } else if (key == "Enter") {
     return "equals";
+  } else if (key == "Escape") {
+    return "clear";
+  } else if (key == "c") {
+    return "clear";
+  } else if (key == "Delete") {
+    return "clear";
+  } else if (key == "Backspace") {
+    return "clear";
   }
   return key;
 }
 
 keys.forEach(key => key.addEventListener('mousedown', function(e) {
-  // console.log(this);
+  console.log(this);
   this.classList.add('pushing');
 }));
 keys.forEach(key => key.addEventListener('mouseup', function(e) {
@@ -117,15 +122,19 @@ function pressKey(e) {
   let thisDataKey = keyToDataKey(e.key);
   console.log(thisDataKey);
   let thisKey = document.querySelector(`div[data-key="${thisDataKey}"]`);
-  thisKey.classList.add('pushing');
-  handleInput(thisDataKey);
+  if (thisKey != null) {
+    thisKey.classList.add('pushing');
+    handleInput(thisDataKey);
+  }
 }
 
 function releaseKey(e) {
   let thisDataKey = keyToDataKey(e.key);
-  console.log(e.key);
+  // console.log(e.key);
   let thisKey = document.querySelector(`div[data-key="${thisDataKey}"]`);
-  thisKey.classList.remove('pushing');
+  if (thisKey != null) {
+    thisKey.classList.remove('pushing');
+  }
 }
 
 function addToString(num) {
@@ -184,6 +193,14 @@ function parseDisplay() {
       } else {
         cExp2 += cur;
       }
+    } else if (cur == "-") {
+      if (cExp1 == "") {
+        cExp1 += cur;
+      } else if (cOper != "" && cExp2 == "") {
+        cExp2 += cur;
+      } else {
+        cOper = cur;
+      }
     } else {
       cOper = cur;
     }
@@ -212,10 +229,10 @@ function evaluate(dataKey) {
   if (oper != "") {
     if (exp2 == "") {
       if (oper == "+" || oper == "-") {
-        console.log("0");
+        // console.log("0");
         exp2 = 0;
       } else {
-        console.log("1");
+        // console.log("1");
         exp2 = 1;
       }
     }
@@ -223,15 +240,15 @@ function evaluate(dataKey) {
     displayString = answer.toString();
     exp1 = answer;
     exp2 = "";
-    if (dataKey == undefined) {
+    displayString = roundOff(parseFloat(displayString),5).toString()
+    if (isNaN(displayString)) {
+      displayString = "NICE TRY";
+    } else if (dataKey == undefined) {
       oper = "";
     } else {
       oper = getOperator(dataKey);
       displayString += oper;
-    }
-    displayString = roundOff(parseFloat(displayString),5).toString()
-    if (isNaN(displayString)) {
-      displayString = "NICE TRY";
+      hasInputted = true;
     }
     display();
   }
